@@ -1,0 +1,21 @@
+.grid {
+
+	padding: 2rem;
+	display: inline-flex;
+    flex-direction: column;
+
+
+	& table {
+		max-width: 100%;
+
+
+		&, tr, td {
+			border: 1px solid black;
+		}
+
+		td {
+			width: 1rem;
+			height: 1rem;
+		}
+	}
+}

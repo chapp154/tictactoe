@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 
 
 
-const Grid = () => {
+const Grid = ({handleMove}) => {
 
 	let [htmlArr, setHtmlArr] = useState(null);
+	let [gridSize, setGridSize] = useState(null)
 
 	useEffect(() => {
 		const size = Math.abs(prompt("How big you wish to have your grid? (for 10x10 put in 10)"));
@@ -12,7 +13,7 @@ const Grid = () => {
 		let td = [];
 
 		for(let i = 0; i < size; i++) {
-			td[i] = <td key={`td${i.toString()}`}></td>;
+			td[i] = <td onClick={handleMove} key={`td${i.toString()}`}></td>;
 		}
 
 		for(let i = 0; i < size; i++) {
@@ -20,13 +21,14 @@ const Grid = () => {
 		}
 
 		setHtmlArr(tr);
+		setGridSize(size);
 
 	}, [])
 	
 
 	return ( 
 		<div className="grid">
-			<p>We have a grid of {3}</p>
+			<p>We have a grid of {gridSize}</p>
 
 			<table>
 				<tbody>

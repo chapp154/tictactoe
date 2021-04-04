@@ -1,13 +1,11 @@
-import { useState } from 'react';
-
-const Header = ({playerNo}) => {
+const Header = ({player}) => {
 
 
 
 	return (
 		<header>
 			<div className="player">
-				<p>Player: {playerNo}</p>
+				<p>Player: {player}</p>
 			</div>
 			<div className="info">
 				<p>Game</p>

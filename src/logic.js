@@ -43,9 +43,6 @@ export const logic = {
 
 
 
-
 		console.log(x, y);
-		return x;
-
 	}
 }

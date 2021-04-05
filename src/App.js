@@ -5,30 +5,37 @@ import { logic } from "./logic";
 
 function App() {
 
-	let [player, setPlayer] = useState(0);
-	let [fieldEvent, setFieldEvent] = useState(false);
+	const [fieldEvent, setFieldEvent] = useState(false);
+	const [currMove, setcurrMove] = useState(null);
+	const [player, setPlayer] = useState(1);
+
 
 	const handleMove = (event) => {
 
-		setPlayer((player) => player === 1 ? 2 : 1);
-		setFieldEvent((e) => event);
+		if(event.target.innerText) return;
+
+		setFieldEvent(event);
+		setcurrMove(event.target.id);
+
 	}
 
 	useEffect(() => {
 		if(fieldEvent) {
-			console.log("LOAD");
 			logic.placeSymbol(player, fieldEvent);
+			logic.movesMemory(currMove, player);
+			logic.checkMatches(currMove, player)
+
+			setPlayer((player) => player === 1 ? 2 : 1);
 
 		}
-
-
-	}, [player, fieldEvent]);
+	}, [fieldEvent]);
 
 
 	return (
     <div className="App">
 		<Header player = {player}/>
 		<Grid handleMove = {handleMove}/>
+
     </div>
   );
 }

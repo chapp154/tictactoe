@@ -25,21 +25,24 @@ export const logic = {
 		let count = 0;
 		let playerMatches = 1;
 
+		function checkTeplate(fn, count, direction1, direction2) {
+			if(this.moves[`player${player}`].includes(direction1) ||
+				this.moves[`player${player}`].includes(direction2)) {
+
+				playerMatches++;
+				console.log("has match", playerMatches);
+
+				return fn.call(this, count);
+			}
+		}
+
 
 		function leftBottomToTopRight(count) {
 			count++;
 			const topRightCell = `${y - count}-${ID_TEMPLATE[ID_TEMPLATE.indexOf(x) + count]}`;
 			const bottomLeftCell = `${y + count}-${ID_TEMPLATE[ID_TEMPLATE.indexOf(x) - count]}`;
 
-			if(this.moves[`player${player}`].includes(topRightCell) ||
-				this.moves[`player${player}`].includes(bottomLeftCell)) {
-
-				playerMatches++;
-				console.log("has match", playerMatches);
-
-
-				return leftBottomToTopRight.call(this, count);
-			}
+			checkTeplate.call(this, leftBottomToTopRight, count, topRightCell, bottomLeftCell);
 			
 		}
 		leftBottomToTopRight.call(this, count);

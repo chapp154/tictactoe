@@ -2,8 +2,12 @@ import { useState, useEffect } from "react";
 
 const Header = ({fieldEvent, currMove}) => {
 
+	const [moves, setMoves] = useState([
+		{player1: []},
+		{player2: []}
+	]);
 	const [player, setPlayer] = useState(1);
-	const [moves1, setMoves1] = useState([])
+
 
 	useEffect(() => {
 
@@ -11,17 +15,22 @@ const Header = ({fieldEvent, currMove}) => {
 
 		fieldEvent.target.textContent = player === 1 ? "X" : "O";
 
-		//setMoves({[`player${player}`]: [...moves[`player${player}`], currMove]});
-		if(player === 1) {
-			setMoves1((moves1) => [...moves1, currMove])
-
-		}
+		setMoves((moves) => {
+			return moves.map(playerMoves => {
+				if(playerMoves.hasOwnProperty(`player${player}`)) {
+					return {[`player${player}`]: [...playerMoves[`player${player}`], currMove]};
+				}
+				return playerMoves;
+			}) 
+		});
 
 		setPlayer((player) => player === 1 ? 2 : 1);
 
+		console.log("use effect", moves);
+
 	}, [fieldEvent]);
 
-	console.log(player, moves1);
+	console.log(moves);
 
 	return (
 		<header>
@@ -29,7 +38,7 @@ const Header = ({fieldEvent, currMove}) => {
 				<p>Player: {player}</p>
 			</div>
 			<div className="info">
-				<p>Game</p>
+				<p>Game: </p>
 			</div>
 		</header>
 	);

@@ -9,12 +9,18 @@ function App() {
 	const [currMove, setcurrMove] = useState(null);
 
 
+
 	function handleMove(event) {
 
 		if(event.target.innerText) return;
 
 		setFieldEvent(event);
 		setcurrMove(event.target.id);
+
+
+
+
+
 
 	}
 

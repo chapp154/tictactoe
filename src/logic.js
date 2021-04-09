@@ -8,7 +8,7 @@ export const logic = {
 		let countGlobal = 0;
 		let playerMatches = 1;
 		let playerWon = false;
-
+ 
 		function checkTeplate(fn, count, direction1, direction2) {
 			if(this.moves[`player${player}`].includes(direction1) ||
 				this.moves[`player${player}`].includes(direction2)) {

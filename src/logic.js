@@ -1,14 +1,5 @@
 export const logic = {
 
-	moves: {
-		player1: [],
-		player2: [],
-	},
-
-	placeSymbol: (player, fieldEvent) => fieldEvent.target.textContent = player === 1 ? "X" : "O",
-
-	movesMemory: function(currMove, player) {this.moves[`player${player}`] = [...this.moves[`player${player}`], currMove]},
-
 	checkMatches: function(currMove, player) {
 		const ID_TEMPLATE = "abcdefghijklmnopqrstuvwxyz";
 

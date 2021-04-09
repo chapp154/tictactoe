@@ -27,7 +27,6 @@ const Grid = ({handleMove}) => {
 
 	}, [])
 	
-
 	return ( 
 		<div className="grid">
 			<p>We have a grid of {gridSize}</p>

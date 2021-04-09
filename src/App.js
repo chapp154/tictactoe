@@ -25,7 +25,6 @@ function App() {
 	}
 
 
-
 	// useEffect(() => {
 	// 	if(fieldEvent) {
 	// 		logic.placeSymbol(player, fieldEvent);

@@ -26,11 +26,9 @@ const Header = ({fieldEvent, currMove}) => {
 
 		setPlayer((player) => player === 1 ? 2 : 1);
 
-		console.log("use effect", moves);
 
 	}, [fieldEvent]);
 
-	console.log(moves);
 
 	return (
 		<header>

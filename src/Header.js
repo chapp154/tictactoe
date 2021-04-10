@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import playerWon from "./playerWon";
 
 const Header = ({fieldEvent, currMove}) => {
 
@@ -7,6 +8,7 @@ const Header = ({fieldEvent, currMove}) => {
 		{player2: []}
 	]);
 	const [player, setPlayer] = useState(1);
+	const [victory, setVictory] = useState(false);
 
 
 	useEffect(() => {
@@ -23,11 +25,18 @@ const Header = ({fieldEvent, currMove}) => {
 				return playerMoves;
 			}) 
 		});
+	}, [fieldEvent]);
+
+	useEffect(() => {
+		if(!fieldEvent) return;
+
+		console.log(moves, currMove);
+
+		playerWon(currMove, player, moves);
 
 		setPlayer((player) => player === 1 ? 2 : 1);
 
-
-	}, [fieldEvent]);
+	}, [moves])
 
 
 	return (

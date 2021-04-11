@@ -8,12 +8,11 @@ const Header = ({fieldEvent, currMove}) => {
 		{player2: []}
 	]);
 	const [player, setPlayer] = useState(1);
-	const [victory, setVictory] = useState(false);
+	const [gameRunning, setGameRunning] = useState(true);
 
 
 	useEffect(() => {
-
-		if(!fieldEvent) return;
+		if(!fieldEvent || !gameRunning) return;
 
 		fieldEvent.target.textContent = player === 1 ? "X" : "O";
 
@@ -30,9 +29,14 @@ const Header = ({fieldEvent, currMove}) => {
 	useEffect(() => {
 		if(!fieldEvent) return;
 
-		console.log(moves, currMove);
 
-		playerWon(currMove, player, moves);
+		if(playerWon(currMove, player, moves)) {
+			setGameRunning((state) => false);
+			alert(`player ${player} won! `);
+
+			return;
+		}
+		
 
 		setPlayer((player) => player === 1 ? 2 : 1);
 

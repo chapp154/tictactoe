@@ -14,8 +14,11 @@ function App() {
 
 		if(event.target.innerText) return;
 
+
 		setFieldEvent(event);
 		setcurrMove(event.target.id);
+
+
 
 
 

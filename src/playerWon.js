@@ -13,14 +13,14 @@ function playerWon(currMove, player, moves) {
 			moves[player - 1][`player${player}`].includes(direction2)) {
 
 			playerMatches++;
-			console.log("has match", playerMatches, "count:" + count);
+			//console.log("has match", playerMatches, "count:" + count);
 
-			if (playerMatches >= 4) {
+			if (playerMatches >= 5) {
 				playerWon = true;
 				return;
 			}
 
-			return fn();
+			return fn(count);
 		} else {
 			playerMatches = 1;
 			countGlobal = 0;

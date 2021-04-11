@@ -1,42 +1,42 @@
 import { useState, useEffect } from "react";
 import playerWon from "./playerWon";
 
-const Header = ({fieldEvent, currMove}) => {
+const Header = ({ fieldEvent, currMove }) => {
 
 	const [moves, setMoves] = useState([
-		{player1: []},
-		{player2: []}
+		{ player1: [] },
+		{ player2: [] }
 	]);
 	const [player, setPlayer] = useState(1);
 	const [gameRunning, setGameRunning] = useState(true);
 
 
 	useEffect(() => {
-		if(!fieldEvent || !gameRunning) return;
+		if (!fieldEvent || !gameRunning) return;
 
 		fieldEvent.target.textContent = player === 1 ? "X" : "O";
 
 		setMoves((moves) => {
 			return moves.map(playerMoves => {
-				if(playerMoves.hasOwnProperty(`player${player}`)) {
-					return {[`player${player}`]: [...playerMoves[`player${player}`], currMove]};
+				if (playerMoves.hasOwnProperty(`player${player}`)) {
+					return { [`player${player}`]: [...playerMoves[`player${player}`], currMove] };
 				}
 				return playerMoves;
-			}) 
+			})
 		});
 	}, [fieldEvent]);
 
 	useEffect(() => {
-		if(!fieldEvent) return;
+		if (!fieldEvent) return;
 
 
-		if(playerWon(currMove, player, moves)) {
+		if (playerWon(currMove, player, moves)) {
 			setGameRunning((state) => false);
-			alert(`player ${player} won! `);
+			alert(`player ${player} won!`);
 
 			return;
 		}
-		
+
 
 		setPlayer((player) => player === 1 ? 2 : 1);
 
